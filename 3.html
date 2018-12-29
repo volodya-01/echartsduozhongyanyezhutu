@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>ECharts</title>
+    <!-- 引入 echarts.js -->
+    <script src="echarts.min.js"></script>
+</head>
+
+<body>
+    <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
+    <div id="main" style="width: 1200px;height:600px;"></div>
+    <script type="text/javascript">
+        // 基于准备好的dom，初始化echarts实例
+        var a = [1, 6, 9, 1, 5, 3, 5, 2, 4, 8, 9, 11, 12, 14, 3, 13];
+        var b = [1, 6, 9, 1, 5, 3, 5, 2, 4, 8, 9, 11, 12, 14, 3, 13];
+
+        console.log(b)
+        for (var i = 0; i < a.length; i++) {
+            if (a[i] >= 7) {
+                a.splice(i, 1, 0)
+            }
+        }
+        for (var i = 0; i < a.length; i++) {
+            if (a[i] <= 7) {
+                a.splice(i, 1, -a[i])
+            }
+        }
+        for (var j = 0; j < b.length; j++) {
+            if (b[j] <= 7) {
+                b.splice(j, 1, 0)
+            }
+        }
+        for (var j = 0; j < b.length; j++) {
+            if (b[j] >= 7) {
+                b.splice(j, 1, b[j] - 7)
+            }
+        }
+        /*    var dat1 = [-7, -4, -3, -2, -1, -4, -3]
+           var dat2 = [7, 4, 3, 2, 1, 4, 3] */
+        var myChart = echarts.init(document.getElementById('main'));
+        option = {
+            grid: {
+                left: '3%',
+                right: '4%',
+                bottom: '3%',
+                containLabel: true
+            },
+            xAxis: [{
+                type: 'value',
+                show: false,
+                /* min:0,
+                max:14 */
+                /*             gridIndex:7 */
+            }],
+            yAxis: [{
+                type: 'category',
+                axisTick: {
+                    show: false
+                },
+                axisLine: {
+                    lineStyle: {
+                        type: 'solid',
+                        color: 'blue',
+                        width: '2'
+                    }
+                },
+                axisLabel: {
+                    textStyle: {
+                        color: '#000'
+                    }
+                },
+                data: ['一', '二', '三', '四', '五', '六', '七', '八', '九', '十', '十一', '十二', '十三', '十四', '十五', '十六']
+            }],
+            series: [
+
+                {
+                    name: 'PH<7',
+                    type: 'bar',
+                    stack: '总量',
+                    label: {
+                        normal: {
+                            show: true,
+                            position: 'left'
+                        }
+                    },
+                    itemStyle: {
+                        normal: {
+                            label: {
+                                show: false,
+                                position: "top",
+                                /* formatter: "{c}↑" */
+                                formatter: function (re) {
+                                    if (Math.abs(re.data) == 0 || Math.abs(re.data) == 7) {
+                                        var ar = ""
+                                    } else {
+                                        var ar = Math.abs(re.data)
+                                    }
+
+                                    console.log(ar)
+                                    return ar
+                                }
+                            }
+                        }
+                    },
+                    data: a
+                },
+                {
+                    name: 'PH>7',
+                    type: 'bar',
+                    stack: '总量',
+                    label: {
+                        normal: {
+                            show: true,
+                            position: 'right'
+                        }
+                    },
+                    data: b,
+                    itemStyle: {
+                        normal: {
+                            label: {
+                                show: false,
+                                position: "top",
+                                /* formatter: "{c}↑" */
+                                formatter: function (re2) {
+                                    if (re2.data + 7 == 7) {
+                                        var ar2 = ''
+                                    } else {
+                                        var ar2 = Math.abs(re2.data + 7)
+                                    }
+
+                                    console.log(ar2)
+                                    return ar2
+                                }
+                            }
+                        }
+                    },
+                }
+            ]
+        };
+
+    
+        // 使用刚指定的配置项和数据显示图表。
+        myChart.setOption(option);
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var a = [1, 2, 3, 4, 5, 6, , 7, 8, 9, 10, 11, 12, 13, 14, 16]
+        var a1 = []
+        var a2 = []
+        var a3 = []
+        var a4 = []
+        var a5 = []
+        var color1 = []
+        var color2 = []
+        var color3 = []
+        var color4 = []
+        var color5 = []
+        for (var i = 0; i < a.length; i++) {
+            if (a[i] < 3 || a[i] == 3) {
+                a1.push(a[i])
+                color1.push("red")
+            } else if (3 < a[i] && a[i] < 6 || a[i] == 6) {
+                a2.push(a[i])
+                color2.push("orange")
+            } else if (6 < a[i] && a[i] < 9 || a[i] == 9) {
+                a3.push(a[i])
+                color3.push("yellow")
+            } else if (9 < a[i] && a[i] < 13 || a[i] == 13) {
+                a4.push(a[i])
+                color4.push("green")
+            } else if (13 < a[i] || a[i] == 13) {
+                a5.push(a[i])
+                color5.push("blue")
+            }
+        }
+var colorlist=color1.concat(color2).concat(color3).concat(color4).concat(color5)
+console.log(colorlist)
+        console.log(a1)
+        console.log(color1)
+        console.log(a2)
+        console.log(color2)
+        console.log(a3)
+        console.log(color3)
+        console.log(a4)
+        console.log(color4)
+        console.log(a5)
+        console.log(color5)
+    </script>
+</body>
+
+</html>
